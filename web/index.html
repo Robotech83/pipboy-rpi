@@ -62,10 +62,6 @@
     </section>
 
     <!-- ========================================
-         SCREEN: INVENTORY (placeholder)
-         Will manage files & tools later
-         ======================================== -->
-    <!-- ========================================
      SCREEN: INVENTORY
      File browser powered by backend
      ======================================== -->
@@ -80,28 +76,15 @@
 </section>
 
 
-    <!-- ========================================
-     SCREEN: DATA
-     Logs & Quests
-     ======================================== -->
-<section id="data" class="screen">
+ <!-- ===================== -->
+  <!-- DATA : LOGS PANEL -->
+  <!-- ===================== -->
+  <section id="data-logs" class="pipboy-panel">
+    <h2 class="pipboy-title">DEV LOGS</h2>
 
-  <!-- DATA submenu -->
-  <div id="data-tabs">
-    <button data-data="logs">LOGS</button>
-    <button data-data="quests">QUESTS</button>
-  </div>
-
-  <!-- LOG LIST -->
-  <ul id="log-list"></ul>
-
-  <!-- LOG VIEWER -->
-  <pre id="log-content"></pre>
-
-  <!-- QUEST LIST -->
-  <div id="quest-list"></div>
-
-</section>
+    <!-- Container for logs -->
+    <div id="logs-container"></div>
+  </section>
 
 
     <!-- ========================================
@@ -130,6 +113,9 @@
 
     <!-- DATA screen logic -->
   <script src="js/data.js"></script>
+
+  <!-- DEV LOGS logic -->
+  <script src="js/logs.js"></script>
 
 
 </body>
