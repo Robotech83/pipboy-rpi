@@ -217,6 +217,46 @@ header {
   margin-top: 10px;
 }
 
+/* =========================
+   QUEST LIST STYLES
+   ========================= */
+
+#quest-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Individual quest card */
+.quest {
+  border: 1px solid #00ff66;
+  padding: 10px;
+  background: rgba(0, 255, 102, 0.05);
+}
+
+/* Completed quest visual */
+.quest.completed {
+  opacity: 0.4;
+  text-decoration: line-through;
+}
+
+/* Quest title */
+.quest h3 {
+  margin: 0 0 6px 0;
+  font-size: 1.1rem;
+}
+
+/* Objective list */
+.quest ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+/* Checkbox */
+.quest input[type="checkbox"] {
+  margin-right: 6px;
+}
+
 /* =========================================================
    OPTIONAL: SCREEN NOISE (VERY SUBTLE)
    ========================================================= */

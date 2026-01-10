@@ -1,0 +1,12 @@
+{
+  "id": 4,
+  "title": "Hardware Deployment",
+  "description": "Prepare the Pip-Boy system for deployment on Raspberry Pi hardware.",
+  "objectives": [
+    "Configure Raspberry Pi OS",
+    "Install backend dependencies",
+    "Auto-launch UI on boot",
+    "Configure audio output"
+  ],
+  "status": "INACTIVE"
+}

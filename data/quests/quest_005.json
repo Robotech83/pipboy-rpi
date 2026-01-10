@@ -1,0 +1,12 @@
+{
+  "id": 5,
+  "title": "Vault-Tec Field Testing",
+  "description": "Test system stability and usability under real-world conditions.",
+  "objectives": [
+    "Run system on Raspberry Pi",
+    "Test touchscreen interactions",
+    "Verify offline operation",
+    "Fix performance issues"
+  ],
+  "status": "INACTIVE"
+}
