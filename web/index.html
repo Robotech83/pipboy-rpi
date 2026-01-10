@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pip-Boy</title>
+  <link rel="stylesheet" href="css/pipboy.css">
+</head>
+
+<body>
+  <div id="pipboy">
+    <!-- ========================================
+         HEADER / TAB NAVIGATION
+         Switches between screens
+         ======================================== -->
+    <header>
+
+      <span class="tab active" data-tab="stat">STAT</span>
+      <span class="tab" data-tab="inv">INV</span>
+      <span class="tab" data-tab="data">DATA</span>
+     <span class="tab" data-tab="radio">📻 RADIO</span>
+
+    </header>
+
+    <!-- ========================================
+         SCREEN: STAT
+         Shows live system stats
+         ======================================== -->
+    <section id="stat" class="screen active">
+
+      <!-- Health Points (mapped to disk space) -->
+      <div class="stat">
+        <label>HP</label>
+        <div class="bar">
+          <!-- JS changes this width dynamically -->
+          <div id="hp"></div>
+        </div>
+      </div>
+
+      <!-- Action Points (mapped to CPU load) -->
+      <div class="stat">
+        <label>AP</label>
+        <div class="bar">
+          <div id="ap"></div>
+        </div>
+      </div>
+
+      <!-- Radiation (mapped to temperature) -->
+      <div class="stat">
+        <label>RADS</label>
+        <div class="bar">
+          <div id="rads"></div>
+        </div>
+      </div>
+
+      <!-- Raw system values for debugging -->
+      <div class="stat small">
+        CPU: <span id="cpu"></span>% |
+        RAM: <span id="ram"></span>% |
+        DISK: <span id="disk"></span>%
+      </div>
+
+    </section>
+
+    <!-- ========================================
+         SCREEN: INVENTORY (placeholder)
+         Will manage files & tools later
+         ======================================== -->
+    <!-- ========================================
+     SCREEN: INVENTORY
+     File browser powered by backend
+     ======================================== -->
+<section id="inv" class="screen">
+
+  <!-- Shows current folder path -->
+  <div id="inv-path">/</div>
+
+  <!-- File & folder list -->
+  <ul id="inv-list"></ul>
+
+</section>
+
+
+    <!-- ========================================
+     SCREEN: DATA
+     Logs & Quests
+     ======================================== -->
+<section id="data" class="screen">
+
+  <!-- DATA submenu -->
+  <div id="data-tabs">
+    <button data-data="logs">LOGS</button>
+    <button data-data="quests">QUESTS</button>
+  </div>
+
+  <!-- LOG LIST -->
+  <ul id="log-list"></ul>
+
+  <!-- LOG VIEWER -->
+  <pre id="log-content"></pre>
+
+  <!-- QUEST LIST -->
+  <div id="quest-list"></div>
+
+</section>
+
+
+    <!-- ========================================
+         SCREEN: RADIO (placeholder)
+         MP3 player / streams
+         ======================================== -->
+    <section id="radio" class="screen">
+      <p>RADIO SIGNAL DETECTED</p>
+    </section>
+
+  </div>
+
+  <!-- ==========================================
+       JAVASCRIPT FILES
+       Order matters!
+       ========================================== -->
+
+  <!-- Tab navigation logic -->
+  <script src="js/tabs.js"></script>
+
+  <!-- STAT screen updater -->
+  <script src="js/stat.js"></script>
+
+    <!-- INVENTORY screen logic -->
+  <script src="js/inv.js"></script>
+
+    <!-- DATA screen logic -->
+  <script src="js/data.js"></script>
+
+
+</body>
+</html>
