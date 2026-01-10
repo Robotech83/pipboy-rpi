@@ -1,0 +1,12 @@
+{
+  "id": 1,
+  "title": "System Broadcast Online",
+  "description": "Bring the RADIO module online to allow audio playback and broadcast reception.",
+  "objectives": [
+    "Design RADIO user interface",
+    "Implement audio playback logic",
+    "Support local audio files",
+    "Add internet radio stream support"
+  ],
+  "status": "ACTIVE"
+}

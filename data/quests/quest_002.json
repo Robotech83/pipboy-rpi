@@ -1,0 +1,12 @@
+{
+  "id": 2,
+  "title": "Backend Services Initialization",
+  "description": "Establish backend services to support system logic and data access.",
+  "objectives": [
+    "Choose backend language (Python or Node.js)",
+    "Create local API service",
+    "Connect frontend to backend",
+    "Implement service structure"
+  ],
+  "status": "ACTIVE"
+}
