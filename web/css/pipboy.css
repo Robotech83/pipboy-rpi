@@ -9,11 +9,7 @@ body {
   display: flex;
   justify-content: center;
   margin-top: 40px;
-
-  /* Global CRT text glow */
-  text-shadow:
-    0 0 2px #00ff66,
-    0 0 6px rgba(0, 255, 102, 0.6);
+  text-shadow: 0 0 2px #00ff66, 0 0 6px rgba(0, 255, 102, 0.6);
 }
 
 /* Main Pip-Boy container */
@@ -21,19 +17,13 @@ body {
   width: 600px;
   padding: 20px;
   border: 2px solid #00ff66;
-
   position: relative; /* REQUIRED for CRT overlay */
-  
-  /* CRT glow */
-  box-shadow:
-    0 0 10px #00ff66,
-    0 0 25px rgba(0, 255, 102, 0.4);
-
-  /* Flicker animation */
+  box-shadow: 0 0 10px #00ff66, 0 0 25px rgba(0, 255, 102, 0.4);
   animation: flicker 3s infinite;
 }
+
 /* =========================================================
-   SCREEN VISIBILITY CONTROL
+   SCREEN VISIBILITY & PANELS
    ========================================================= */
 
 .screen {
@@ -44,6 +34,23 @@ body {
   display: block;
 }
 
+.pipboy-panel {
+  margin: 20px auto;
+  width: 90%;
+  max-width: 600px;
+  padding: 10px;
+  border: 1px solid #00ff66;
+  box-shadow: 0 0 15px #00ff66 inset;
+  background-color: #001a00;
+  font-family: 'Courier New', monospace;
+  color: #00ff66;
+  position: relative;
+}
+
+.pipboy-title {
+  text-align: center;
+  margin-bottom: 10px;
+}
 
 /* =========================================================
    HEADER / TABS
@@ -89,9 +96,7 @@ header {
   background: #00ff66;
   width: 0%;
   transition: width 0.5s;
-
-  /* Slight blur to soften edges (CRT look) */
-  filter: blur(0.3px);
+  filter: blur(0.3px); /* Slight blur to soften edges (CRT look) */
 }
 
 .small {
@@ -99,51 +104,36 @@ header {
 }
 
 /* =========================================================
-   CRT SCANLINES OVERLAY
+   DATA CONTAINERS (LOGS & QUESTS)
    ========================================================= */
 
-#pipboy::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-
-  /* Horizontal scanlines */
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(0, 255, 102, 0.07),
-    rgba(0, 255, 102, 0.07) 1px,
-    rgba(0, 0, 0, 0) 2px
-  );
-
-  /* Blend scanlines with content */
-  mix-blend-mode: overlay;
-
-  /* Slow vertical movement */
-  animation: scanlines 0.4s linear infinite;
+#data-tabs button {
+  background: none;
+  border: 1px solid #00ff66;
+  color: #00ff66;
+  margin-right: 5px;
+  cursor: pointer;
 }
 
-/* Scanline movement */
-@keyframes scanlines {
-  from { background-position: 0 0; }
-  to   { background-position: 0 6px; }
+#logs-container,
+#quests-container {
+  height: 250px;
+  overflow-y: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  line-height: 1.2rem;
+  color: #00ff66;
+  background-color: #001a00;
+  padding: 10px;
+  border: 1px solid #00ff66;
+  box-shadow: 0 0 15px #00ff66 inset;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-width: 100%;
 }
 
 /* =========================================================
-   CRT FLICKER (VISIBLE)
-   ========================================================= */
-
-@keyframes flicker {
-  0%   { opacity: 1; }
-  2%   { opacity: 0.85; }
-  4%   { opacity: 1; }
-  6%   { opacity: 0.9; }
-  8%   { opacity: 1; }
-  100% { opacity: 1; }
-}
-
-/* =========================================================
-   INVENTORY FILE LIST
+   LISTS (INVENTORY, LOGS, QUESTS)
    ========================================================= */
 
 #inv-path {
@@ -152,17 +142,21 @@ header {
   opacity: 0.8;
 }
 
-#inv-list {
+#inv-list,
+#log-list {
   list-style: none;
   padding: 0;
+  margin-top: 10px;
 }
 
-#inv-list li {
+#inv-list li,
+#log-list li {
   padding: 6px;
   cursor: pointer;
 }
 
-#inv-list li:hover {
+#inv-list li:hover,
+#log-list li:hover {
   background: rgba(0, 255, 102, 0.15);
 }
 
@@ -174,33 +168,6 @@ header {
 /* File icon */
 #inv-list li.file::before {
   content: "📄 ";
-}
-
-/* =========================================================
-   DATA: LOGS & QUESTS
-   ========================================================= */
-
-#data-tabs button {
-  background: none;
-  border: 1px solid #00ff66;
-  color: #00ff66;
-  margin-right: 5px;
-  cursor: pointer;
-}
-
-#log-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 10px;
-}
-
-#log-list li {
-  cursor: pointer;
-  padding: 4px;
-}
-
-#log-list li:hover {
-  background: rgba(0, 255, 102, 0.15);
 }
 
 #log-content {
@@ -216,45 +183,39 @@ header {
   padding: 8px;
   margin-top: 10px;
 }
-/* ==========================
-   Pip-Boy Logs Styling
-   ========================== */
-#logs-container {
-  height: 250px;              /* Height of the log window */
-  overflow-y: auto;           /* Enable vertical scrolling */
-  font-family: 'Courier New', monospace;
-  font-size: 0.95rem;
-  line-height: 1.2rem;
-  color: #00ff66;             /* Classic neon green text */
-  background-color: #001a00;  /* Dark green CRT background */
-  padding: 10px;
-  border: 1px solid #00ff66;
-  box-shadow: 0 0 15px #00ff66 inset;
-  position: relative;
-  white-space: pre-wrap;      /* Wrap text */
-  word-break: break-word;     /* Break long words */
-  max-width: 90%;             /* Prevent full-line stretching */
-}
 
-
-/* Individual log entry styling */
 .log-entry {
-  margin-bottom: 6px;   /* Space between lines */
-  text-indent: 4px;     /* Small left indent for terminal feel */
-  letter-spacing: 0.5px; 
+  margin-bottom: 6px;
+  text-indent: 4px;
+  letter-spacing: 0.5px;
 }
-
 
 /* =========================================================
-   OPTIONAL: SCREEN NOISE (VERY SUBTLE)
+   CRT EFFECTS
    ========================================================= */
 
+/* Scanlines Overlay */
+#pipboy::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 255, 102, 0.07),
+    rgba(0, 255, 102, 0.07) 1px,
+    rgba(0, 0, 0, 0) 2px
+  );
+  mix-blend-mode: overlay;
+  animation: scanlines 0.4s linear infinite;
+}
+
+/* Screen Noise (Optional) */
 #pipboy::after {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-
   background-image: url("data:image/svg+xml;utf8,\
   <svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'>\
     <filter id='n'>\
@@ -262,11 +223,31 @@ header {
     </filter>\
     <rect width='100%' height='100%' filter='url(%23n)' opacity='0.04'/>\
   </svg>");
-
   animation: noise 0.6s infinite;
 }
 
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+/* Scanline movement */
+@keyframes scanlines {
+  from { background-position: 0 0; }
+  to { background-position: 0 6px; }
+}
+
+/* CRT Flicker */
+@keyframes flicker {
+  0% { opacity: 1; }
+  2% { opacity: 0.85; }
+  4% { opacity: 1; }
+  6% { opacity: 0.9; }
+  8% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+/* Noise animation */
 @keyframes noise {
   from { transform: translate(0,0); }
-  to   { transform: translate(1px,-1px); }
+  to { transform: translate(1px,-1px); }
 }

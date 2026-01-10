@@ -10,17 +10,25 @@ const screens = document.querySelectorAll(".screen");
 tabs.forEach(tab => {
   tab.addEventListener("click", () => {
     const target = tab.dataset.tab;
-
+    
     // Remove active state from all tabs
     tabs.forEach(t => t.classList.remove("active"));
-
+    
     // Hide all screens
     screens.forEach(s => s.classList.remove("active"));
-
+    
     // Activate clicked tab
     tab.classList.add("active");
-
-    // Show matching screen
-    document.getElementById(target).classList.add("active");
+    
+    // FIXED: Check if target element exists before trying to access it
+    const targetScreen = document.getElementById(target);
+    
+    if (targetScreen) {
+      // Show matching screen if it exists
+      targetScreen.classList.add("active");
+    } else {
+      // Log warning for debugging
+      console.warn(`Tab target element with ID "${target}" not found in the DOM`);
+    }
   });
 });

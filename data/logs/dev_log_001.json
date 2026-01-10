@@ -1,7 +1,39 @@
 {
-  "id": 1,
-  "date": "13.08.2026",
-  "title": "System Initialization",
-  "message": "Initialized Pip-Boy project repository and created modular folder structure for STAT, INV, DATA, and RADIO.",
-  "status": "STABLE"
+  "logs": [
+    {
+      "id": 2,
+      "date": "13.08.2026",
+      "title": "Jan 8 - STAT, INV, DATA Modules",
+      "entries": [
+        "[0001] Completed STAT module: clickable tabs, CRT scanlines, flicker, fully commented.",
+        "[0002] Built INV module: file-browser style inventory with comments for clarity.",
+        "[0003] Structured DATA module: logs and quests system, backend-ready.",
+        "[0004] Discussed RADIO module: drafted UI and planned functionality.",
+        "[0005] Decided portfolio approach: GitHub hosting, local-first, desktop dev before Pi deployment."
+      ],
+      "status": "COMPLETE"
+    },
+
+    
+    {
+      "id": 3,
+      "date": "13.09.2026",
+      "title": "Jan 9 - Quests & Dev Logs",
+      "entries": [
+        "[0000] NEXT: Fix quests loading and add interactive checkboxes.",
+        "[0001] Created project folder structure for GitHub: web, backend, data, rpi, docs.",
+        "[0002] Added README.md files for root, backend, data, rpi, and docs folders.",
+        "[0003] Added small Pip-Boy-style logs for dev tracking.",
+        "[0004] Created QUEST system representing remaining build tasks.",
+        "[0005] Implemented QUEST UI: dynamic rendering, checkboxes, visual completed state.",
+        "[0006] Explained local server requirement; fetch() method clarified.",
+        "[0007] Confirmed local website approach preserves Pip-Boy immersion.",
+        "[0008] Checked folder structure: discovered quests are in their own folder.",
+        "[0009] Updated quests.js to attempt correct path (still not loading).",
+        "[0010] Confirmed local server is required for fetch() to work.",
+        "[0011] Decided to stop for the day and resume tomorrow."
+      ],
+      "status": "ACTIVE"
+    }
+  ]
 }
