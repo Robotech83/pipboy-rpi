@@ -216,6 +216,34 @@ header {
   padding: 8px;
   margin-top: 10px;
 }
+/* ==========================
+   Pip-Boy Logs Styling
+   ========================== */
+#logs-container {
+  height: 250px;              /* Height of the log window */
+  overflow-y: auto;           /* Enable vertical scrolling */
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  line-height: 1.2rem;
+  color: #00ff66;             /* Classic neon green text */
+  background-color: #001a00;  /* Dark green CRT background */
+  padding: 10px;
+  border: 1px solid #00ff66;
+  box-shadow: 0 0 15px #00ff66 inset;
+  position: relative;
+  white-space: pre-wrap;      /* Wrap text */
+  word-break: break-word;     /* Break long words */
+  max-width: 90%;             /* Prevent full-line stretching */
+}
+
+
+/* Individual log entry styling */
+.log-entry {
+  margin-bottom: 6px;   /* Space between lines */
+  text-indent: 4px;     /* Small left indent for terminal feel */
+  letter-spacing: 0.5px; 
+}
+
 
 /* =========================================================
    OPTIONAL: SCREEN NOISE (VERY SUBTLE)
