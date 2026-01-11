@@ -1,0 +1,13 @@
+{
+  "id": 8,
+  "date": "13.10.2026",
+  "title": "Jan 10 - Quest Data Cleanup & Index Issue",
+  "entries": [
+    "[0001] 22:05 | Identified merge side-effect: DATA structure/screens and panels drifted out of sync.",
+    "[0002] 22:12 | Investigated why some quest items were unreadable under QUESTS: they were log-shaped (entries[]) not quest-shaped (objectives[]).",
+    "[0003] 22:18 | Converted quest_006 and quest_007 into true quest format (title/description/objectives/status) so they can be checkable.",
+    "[0004] 22:24 | Detected new issue: quest_001.json not displaying in QUESTS list despite existing file.",
+    "[0005] 22:33 | Next action set: verify index filename/path consistency (quest_index vs quests_index), and ensure loader + index match so all quests render."
+  ],
+  "status": "ACTIVE"
+}

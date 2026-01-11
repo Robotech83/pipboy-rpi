@@ -1,0 +1,14 @@
+{
+  "id": 8,
+  "title": "Quest Index & Loader Stabilization",
+  "description": "Ensure all quest files load consistently and display in the QUESTS tab (including quest_001.json). Standardize index naming and loader paths after merge changes.",
+  "objectives": [
+    "Confirm which index file the loader is fetching (quest_index.json vs quests_index.json)",
+    "Standardize to ONE filename and update quests.js to match",
+    "Verify quests_index lists quest_001.json correctly (spelling/case)",
+    "Load quest_001.json directly in browser to confirm it is reachable",
+    "Fix any JSON schema mismatch in quest_001.json (id/title/objectives/status)",
+    "Confirm all quests 001–008 render with no console errors"
+  ],
+  "status": "ACTIVE"
+}

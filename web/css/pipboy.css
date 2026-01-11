@@ -17,7 +17,7 @@ body {
   width: 600px;
   padding: 20px;
   border: 2px solid #00ff66;
-  position: relative; /* REQUIRED for CRT overlay */
+  position: relative; /* required for CRT overlay */
   box-shadow: 0 0 10px #00ff66, 0 0 25px rgba(0, 255, 102, 0.4);
   animation: flicker 3s infinite;
 }
@@ -34,6 +34,7 @@ body {
   display: block;
 }
 
+/* Generic “terminal box” panel */
 .pipboy-panel {
   margin: 20px auto;
   width: 90%;
@@ -42,7 +43,7 @@ body {
   border: 1px solid #00ff66;
   box-shadow: 0 0 15px #00ff66 inset;
   background-color: #001a00;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   color: #00ff66;
   position: relative;
 }
@@ -96,7 +97,7 @@ header {
   background: #00ff66;
   width: 0%;
   transition: width 0.5s;
-  filter: blur(0.3px); /* Slight blur to soften edges (CRT look) */
+  filter: blur(0.3px); /* slight blur to soften edges (CRT look) */
 }
 
 .small {
@@ -104,7 +105,7 @@ header {
 }
 
 /* =========================================================
-   DATA CONTAINERS (LOGS & QUESTS)
+   DATA TABS (if you use them)
    ========================================================= */
 
 #data-tabs button {
@@ -115,11 +116,14 @@ header {
   cursor: pointer;
 }
 
-#logs-container,
-#quests-container {
+/* =========================================================
+   TERMINAL BOX (Logs container)
+   ========================================================= */
+
+#logs-container {
   height: 250px;
   overflow-y: auto;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   font-size: 0.95rem;
   line-height: 1.2rem;
   color: #00ff66;
@@ -132,8 +136,14 @@ header {
   max-width: 100%;
 }
 
+.log-entry {
+  margin-bottom: 6px;
+  text-indent: 4px;
+  letter-spacing: 0.5px;
+}
+
 /* =========================================================
-   LISTS (INVENTORY, LOGS, QUESTS)
+   INVENTORY LIST
    ========================================================= */
 
 #inv-path {
@@ -160,12 +170,10 @@ header {
   background: rgba(0, 255, 102, 0.15);
 }
 
-/* Folder icon */
 #inv-list li.folder::before {
   content: "📁 ";
 }
 
-/* File icon */
 #inv-list li.file::before {
   content: "📄 ";
 }
@@ -178,26 +186,67 @@ header {
   border: 1px solid #00ff66;
 }
 
+/* =========================================================
+   QUESTS CONTAINERS (Active + Archived)
+   IMPORTANT: These are the “boxes”
+   ========================================================= */
 
-.log-entry {
-  margin-bottom: 6px;
-  text-indent: 4px;
-  letter-spacing: 0.5px;
-}
-/* =========================
-   QUESTS (Fallout-style cards)
-   ========================= */
-
+/* Active quests box */
 #quests-container {
+  height: 250px;
+  overflow-y: auto;
+  font-family: "Courier New", monospace;
+  font-size: 0.95rem;
+  line-height: 1.2rem;
+  color: #00ff66;
+  background-color: #001a00;
+  padding: 10px;
+  border: 1px solid #00ff66;
+  box-shadow: 0 0 15px #00ff66 inset;
+  white-space: pre-wrap;
+  word-break: break-word;
+
   display: flex;
   flex-direction: column;
   gap: 18px;
 }
 
+/* Archived quests box (same style, dimmer) */
+#quests-archived {
+  margin-top: 10px;
+
+  height: 180px;
+  overflow-y: auto;
+
+  font-family: "Courier New", monospace;
+  font-size: 0.95rem;
+  line-height: 1.2rem;
+  color: #00ff66;
+
+  background-color: #001a00;
+  padding: 10px;
+  border: 1px solid rgba(0, 255, 102, 0.65);
+  box-shadow: 0 0 15px rgba(0, 255, 102, 0.35) inset;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  opacity: 0.65;
+}
+
+/* =========================================================
+   QUEST CARDS (Fallout-style)
+   ========================================================= */
+
 .quest-card {
   border: 1px solid rgba(0, 255, 102, 0.65);
   padding: 14px 16px;
   background: rgba(0, 0, 0, 0.25);
+}
+
+#quests-archived .quest-card {
+  border-color: rgba(0, 255, 102, 0.35);
 }
 
 .quest-title {
@@ -218,13 +267,16 @@ header {
   font-weight: 700;
 }
 
-/* Optional: make ACTIVE pop slightly */
 .quest-status .value.active {
   opacity: 1;
 }
 
 .quest-status .value.inactive {
   opacity: 0.75;
+}
+
+.quest-status .value.completed {
+  opacity: 0.9;
 }
 
 .quest-desc {
@@ -249,7 +301,7 @@ header {
   user-select: none;
 }
 
-/* Pip-Boy bullet dot (like your screenshot) */
+/* Pip-Boy bullet dot */
 .quest-objective::before {
   content: "•";
   display: inline-block;
@@ -257,19 +309,18 @@ header {
   opacity: 0.9;
 }
 
-/* The check box mark area */
+/* Checkbox area */
 .obj-mark {
   display: inline-block;
   width: 22px;
   opacity: 0.95;
 }
 
-/* Default: unchecked looks like [ ] */
 .obj-mark::before {
   content: "[ ]";
 }
 
-/* Completed: looks like [✓] + dim + strike */
+/* Completed objective look */
 .quest-objective.completed {
   opacity: 0.55;
 }
@@ -282,36 +333,26 @@ header {
   text-decoration: line-through;
 }
 
-/* Keyboard focus (so it’s accessible) */
+/* Whole quest completed */
+.quest-card.quest-completed {
+  opacity: 0.65;
+}
+
+.quest-card.quest-completed .quest-title {
+  opacity: 0.85;
+}
+
+/* Keyboard focus (accessible) */
 .quest-objective:focus {
   outline: 1px solid rgba(0, 255, 102, 0.7);
   outline-offset: 2px;
 }
 
-/* When a whole quest is completed */
-.quest-card.quest-completed {
-  opacity: 0.65;
-}
-
-/* Status line change */
-.quest-status .value.completed {
-  opacity: 0.9;
-}
-.quest-status .value.active{
-  opacity: 1;
-}
-
-/* Optional: make completed title slightly dim */
-.quest-card.quest-completed .quest-title {
-  opacity: 0.85;
-}
-
-
 /* =========================================================
    CRT EFFECTS
    ========================================================= */
 
-/* Scanlines Overlay */
+/* Scanlines overlay */
 #pipboy::before {
   content: "";
   position: absolute;
@@ -327,7 +368,26 @@ header {
   animation: scanlines 0.4s linear infinite;
 }
 
-/* Screen Noise (Optional) */
+/* Archived quests box (same terminal style, dimmer) */
+#quests-archived {
+  margin-top: 10px;
+  height: 180px;
+  overflow-y: auto;
+
+  background-color: #001a00;
+  padding: 10px;
+  border: 1px solid rgba(0, 255, 102, 0.65);
+  box-shadow: 0 0 15px rgba(0, 255, 102, 0.35) inset;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  opacity: 0.65;
+}
+
+
+/* Screen noise */
 #pipboy::after {
   content: "";
   position: absolute;
@@ -343,18 +403,15 @@ header {
   animation: noise 0.6s infinite;
 }
 
-
 /* =========================================================
    ANIMATIONS
    ========================================================= */
 
-/* Scanline movement */
 @keyframes scanlines {
   from { background-position: 0 0; }
   to { background-position: 0 6px; }
 }
 
-/* CRT Flicker */
 @keyframes flicker {
   0% { opacity: 1; }
   2% { opacity: 0.85; }
@@ -364,8 +421,7 @@ header {
   100% { opacity: 1; }
 }
 
-/* Noise animation */
 @keyframes noise {
-  from { transform: translate(0,0); }
-  to { transform: translate(1px,-1px); }
+  from { transform: translate(0, 0); }
+  to { transform: translate(1px, -1px); }
 }

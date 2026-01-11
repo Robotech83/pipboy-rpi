@@ -1,7 +1,7 @@
 {
   "logs": [
     {
-      "id": 2,
+      "id": 1,
       "date": "13.08.2026",
       "title": "Jan 8 - STAT, INV, DATA Modules",
       "entries": [
@@ -16,7 +16,7 @@
 
     
     {
-      "id": 3,
+      "id": 2,
       "date": "13.09.2026",
       "title": "Jan 9 - Quests & Dev Logs",
       "entries": [
@@ -33,11 +33,11 @@
         "[0010] Confirmed local server is required for fetch() to work.",
         "[0011] Decided to stop for the day and resume tomorrow."
       ],
-      "status": "ACTIVE"
+      "status": "COMPLETE"
     },
 
     {
-  "id": 4,
+  "id": 3,
   "date": "13.10.2026",
   "title": "Jan 10 - Morning Patch",
   "entries": [
@@ -47,7 +47,36 @@
     "[0004] Implemented quests_index.json for modular quest loading.",
     "[0005] Confirmed quest system online before departure."
   ],
+  "status": "COMPLETE"
+},
+{
+  "id": 4,
+  "date": "13.10.2026",
+  "title": "Jan 10 - Quest Data Cleanup & Index Issue",
+  "entries": [
+    "[0001] 22:05 | Identified merge side-effect: DATA structure/screens and panels drifted out of sync.",
+    "[0002] 22:12 | Investigated why some quest items were unreadable under QUESTS: they were log-shaped (entries[]) not quest-shaped (objectives[]).",
+    "[0003] 22:18 | Converted quest_006 and quest_007 into true quest format (title/description/objectives/status) so they can be checkable.",
+    "[0004] 22:24 | Detected new issue: quest_001.json not displaying in QUESTS list despite existing file.",
+    "[0005] 22:33 | Next action set: verify index filename/path consistency (quest_index vs quests_index), and ensure loader + index match so all quests render."
+  ],
+  "status": "COMPLETE"
+},
+{
+  "id": 5,
+  "date": "10.11.2026",
+  "title": "Jan 11 - Quest Archiving Integration & UI Regression",
+  "entries": [
+    "[0001] 22:40 | Implemented quest auto-archive logic (ACTIVE → ARCHIVED when completed).",
+    "[0002] 22:55 | Added ARCHIVED section to QUESTS panel for completed quests.",
+    "[0003] 23:10 | Refactored quest rendering to move cards between ACTIVE and ARCHIVED dynamically.",
+    "[0004] 23:28 | Identified UI regression: ARCHIVED container not rendering due to missing HTML target.",
+    "[0005] 23:42 | Discovered DATA screen structure mismatch caused logs and quests to disappear.",
+    "[0006] 23:50 | Determined root cause: HTML screen/panel hierarchy drift after merge and CSS rewrite.",
+    "[0007] 23:58 | Logged unresolved issue for next session: ensure ARCHIVED container exists in DOM and quest loader targets correct containers."
+  ],
   "status": "ACTIVE"
 }
+
   ]
 }

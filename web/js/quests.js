@@ -39,6 +39,10 @@ const QUEST_INDEX_PATH = "../data/quests/quest_index.json";
 // Container in HTML
 const questsContainer = document.getElementById("quests-container");
 
+// Archived quests container
+const archivedContainer = document.getElementById("quests-archived");
+
+
 // Only run if container exists
 if (questsContainer) {
   // Load quest index first
@@ -132,6 +136,8 @@ function renderQuest(quest) {
       statusValue.className = "value active";
       card.classList.remove("quest-completed");
     }
+    // Move card to appropriate container
+    placeCard();
   }
 
   // Render objectives
@@ -184,7 +190,22 @@ function renderQuest(quest) {
   card.appendChild(desc);
   card.appendChild(ul);
 
-  questsContainer.appendChild(card);
+  // Place card in appropriate container
+function placeCard() {
+  if (!archivedContainer || !questsContainer) {
+    questsContainer.appendChild(card);
+    return;
+  }
+
+  // Move card based on completion status
+  if (card.classList.contains("quest-completed")) {
+    archivedContainer.appendChild(card);
+  } else {
+    questsContainer.appendChild(card);
+  }
+}
+
+  placeCard();
 
   // Set initial status correctly on load
   updateQuestCompletionUI();
