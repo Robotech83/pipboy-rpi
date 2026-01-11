@@ -251,3 +251,38 @@ header {
   from { transform: translate(0,0); }
   to { transform: translate(1px,-1px); }
 }
+/* =========================================================
+    QUEST STYLES
+   ========================================================= */
+
+   .quest {
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #00ff66;
+}
+
+.quest-title {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.quest-desc {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-bottom: 6px;
+}
+
+.quest-objectives {
+  list-style: none;
+  padding-left: 10px;
+}
+
+.quest-objective {
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.quest-objective.completed {
+  opacity: 0.5;
+  text-decoration: line-through;
+}

@@ -3,7 +3,7 @@
 // ================================
 
 // Path to quest index file
-const QUEST_INDEX_PATH = "../data/quests/quests_index.json";
+const QUEST_INDEX_PATH = "../data/quests/quest_index.json";
 
 // Container in HTML
 const questsContainer = document.getElementById("quests-container");
@@ -17,7 +17,12 @@ if (questsContainer) {
       return response.json();
     })
     .then(indexData => {
-      // indexData.quests is an array of filenames
+      console.log("QUEST INDEX LOADED:", indexData);
+
+      if (!Array.isArray(indexData.quests)) {
+        throw new Error("Quest index format invalid");
+      }
+
       indexData.quests.forEach(loadQuestFile);
     })
     .catch(error => {
@@ -41,24 +46,49 @@ function loadQuestFile(filename) {
     });  // <--- LINE 31: This is likely where the error is
 }
 
-// Render quest to Pip-Boy UI
+// Render quest 
 function renderQuest(quest) {
-  // Check if container still exists
-  if (!questsContainer) {
-    console.warn("Quest container not found. Cannot render quest.");
-    return;
-  }
-  
+  if (!questsContainer) return;
+
   const questDiv = document.createElement("div");
   questDiv.className = "quest";
 
-  questDiv.innerHTML = `
-    <div class="quest-title">${quest.title}</div>
-    <div class="quest-desc">${quest.description}</div>
-    <ul class="quest-objectives">
-      ${quest.objectives.map(obj => `<li>[ ] ${obj}</li>`).join("")}
-    </ul>
-  `;
+  // Quest title
+  const title = document.createElement("div");
+  title.className = "quest-title";
+  title.textContent = quest.title;
+
+  // Description
+  const desc = document.createElement("div");
+  desc.className = "quest-desc";
+  desc.textContent = quest.description;
+
+  // Objectives list
+  const ul = document.createElement("ul");
+  ul.className = "quest-objectives";
+
+  quest.objectives.forEach(obj => {
+    const li = document.createElement("li");
+    li.className = "quest-objective";
+    li.textContent = "[ ] " + obj;
+
+    // Click to toggle
+    li.addEventListener("click", () => {
+      li.classList.toggle("completed");
+
+      if (li.classList.contains("completed")) {
+        li.textContent = "[✓] " + obj;
+      } else {
+        li.textContent = "[ ] " + obj;
+      }
+    });
+
+    ul.appendChild(li);
+  });
+
+  questDiv.appendChild(title);
+  questDiv.appendChild(desc);
+  questDiv.appendChild(ul);
 
   questsContainer.appendChild(questDiv);
 }
